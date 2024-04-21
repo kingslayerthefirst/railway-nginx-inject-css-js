@@ -30,6 +30,7 @@ for ((i = 0; i < ${#server_name_array[@]}; i++)); do
       listen ${PORT};
       server_name ${server_name_array[$i]};
 
+      resolver 127.0.0.11 ipv6=off valid=10s;
       location / {
           client_max_body_size 100M;
           proxy_set_header X-Real-IP \$remote_addr;
