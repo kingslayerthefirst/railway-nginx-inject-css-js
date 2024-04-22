@@ -39,6 +39,8 @@ for ((i = 0; i < ${#server_name_array[@]}; i++)); do
           proxy_set_header X-Nginx-Proxy true;
           proxy_http_version 1.1;
           proxy_pass ${proxy_pass_array[$i]};
+          proxy_set_header Upgrade \$http_upgrade;
+          proxy_set_header Connection \"upgrade\";
           sub_filter          \"</head>\" \"<link rel='stylesheet'  href='${INJECT_CSS}' /><script src='${INJECT_JS}'></script></head>\";
           sub_filter \"<title>${FIND_TITLE_VALUE}</title>\" \"<title>${REPLACE_TITLE_WITH_VALUE}</title>\";
       }
