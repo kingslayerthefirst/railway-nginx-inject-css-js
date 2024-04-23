@@ -16,4 +16,6 @@ COPY ./configure_nginx.sh /etc/nginx/configure_nginx.sh
 RUN chmod +x /etc/nginx/configure_nginx.sh
 RUN /etc/nginx/configure_nginx.sh
 
+CMD echo $PROXY_PASS && /etc/nginx/configure_nginx.sh && nginx -c /etc/nginx/nginx.conf -g 'daemon off;'
+
 EXPOSE ${PORT}
